@@ -20,8 +20,8 @@ jobs:
     - name: Build and push Docker image
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
-        image: paolabelmonte/hugo-site
-        tags: v1, latest
+        image: paolabelmonte/hugo-site:v1
+        #tags: v1, latest
         registry: docker.io
         dockerfile: Dockerfile
         username: ${{ secrets.DOCKER_USER }}
