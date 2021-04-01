@@ -1,0 +1,28 @@
+# Test workflow Paola
+name: Docker build and publish
+
+on:
+  push:
+    branches: [ main ]
+  #pull_request:
+    #branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+      
+    - name: Build and push Docker image
+      uses: mr-smithers-excellent/docker-build-push@v5
+      with:
+        image: paolabelmonte/hugo-site
+        #tags: v1, latest
+        registry: docker.io
+        dockerfile: Dockerfile
+        username: ${{ secrets.DOCKER_USER }}
+        password: ${{ secrets.DOCKER_PSW }}
