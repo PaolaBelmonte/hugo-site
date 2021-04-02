@@ -1,5 +1,8 @@
-# Summary of changes
-
+---
+title: "Summary of changes"
+date: 2021-03-31T17:10:54Z
+draft: false
+---
 The high level change we propose is to **improve the assistance and repair process** and evaluate to hire a new employee for warehouse management.
 
 During the interview with Rossella, head of the administrative unit at Cea Gas, we discussed the key processes and we focused mainly on processes related to heating system whose power is lower than 35 kW. Private apartment/house owners represent the **higher percentage of customers**: in fact private customers count up to 9.000 and blocks of apartments/firms up to 60.
