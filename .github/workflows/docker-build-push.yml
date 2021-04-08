@@ -28,3 +28,9 @@ jobs:
         dockerfile: Dockerfile
         username: ${{ secrets.DOCKERHUB_USER }}
         password: ${{ secrets.DOCKERHUB_PSW }}
+                
+    - name: Deploy website
+      uses: giorio94/kubectl-oidc-action@1.1.0
+      with:
+        kubeconfig: ${{ secrets.KUBECONFIG }}
+        args: apply -f template-deploy.yaml
