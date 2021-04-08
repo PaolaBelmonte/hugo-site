@@ -20,7 +20,7 @@ spec:
       automountServiceAccountToken: false
       containers:
       - name: hugo-site
-        image: paolabelmonte/hugo-site:v1
+        image: paolabelmonte/hugo-site:v2
         ports:
         - containerPort: 80
 ---
