@@ -10,6 +10,7 @@ RUN apt-get install hugo -y
 COPY . /hugo-site
 
 # Use Hugo to build the static site files.
+WORKDIR /hugo-site
 RUN hugo -v --source=/hugo-site --destination=/hugo-site/public
 
 # Install NGINX and deactivate NGINX's default index.html file.
