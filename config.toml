@@ -1,5 +1,6 @@
-baseURL = "http://example.org/"
+baseURL = "https://hugosite.crownlabs.polito.it/"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "Paola Hugo Site"
 #theme = "geek-doc"
 theme = "hugo-learn"
+enableGitInfo = true
