@@ -3,4 +3,4 @@ languageCode = "en-us"
 title = "Paola Hugo Site"
 #theme = "geek-doc"
 theme = "hugo-learn"
-enableGitInfo = true
+#enableGitInfo = true
