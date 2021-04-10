@@ -17,20 +17,20 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v2
       with:
-        submodules: recursive
-    
-    - name: Build and push Docker image
-      uses: mr-smithers-excellent/docker-build-push@v5
+        submodules: true
+        
+    - name: Get current time
+      uses: 1466587594/get-current-time@v2
+      id: time
       with:
-        image: paolabelmonte/hugo-site
-        tags: v1.2
-        registry: docker.io
-        dockerfile: Dockerfile
-        username: ${{ secrets.DOCKERHUB_USER }}
-        password: ${{ secrets.DOCKERHUB_PSW }}
-                
-    - name: Deploy website
-      uses: giorio94/kubectl-oidc-action@1.1.0
-      with:
-        kubeconfig: ${{ secrets.KUBECONFIG }}
-        args: apply -f template-deploy.yaml
+        format: YYYYMMDD-HHMM
+      run: echo ${{ github.run_number }}  
+ 
+    - name: Output current time
+      run: echo "Current time" ${{ steps.time.outputs.formattedTime }}  
+ 
+    - name: Output Run ID
+      run: echo "github.run_id" ${{ github.run_id }}
+    - name: Output Run Number
+      run: echo "github.run_number" ${{ github.run_number }}
+ 
