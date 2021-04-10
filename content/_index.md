@@ -1,4 +1,5 @@
-Welcome to the homepage of my project!
+Welcome to the **UPDATED homepage** of my project!
+
 
 The high level change we propose is to **improve the assistance and repair process** and evaluate to hire a new employee for warehouse management.
 
