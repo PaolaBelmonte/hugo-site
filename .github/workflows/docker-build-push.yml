@@ -24,7 +24,6 @@ jobs:
       id: time
       with:
         format: YYYYMMDD-HHMM
-      run: echo ${{ github.run_number }}  
  
     - name: Output current time
       run: echo "Current time" ${{ steps.time.outputs.formattedTime }}  
