@@ -23,7 +23,7 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
         image: paolabelmonte/hugo-site
-        tags: v1.1
+        tags: v1.2
         registry: docker.io
         dockerfile: Dockerfile
         username: ${{ secrets.DOCKERHUB_USER }}
