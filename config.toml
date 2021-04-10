@@ -1,6 +1,10 @@
 baseURL = "https://hugosite.crownlabs.polito.it/"
 languageCode = "en-us"
 title = "Paola Hugo Site"
-#theme = "geek-doc"
 theme = "hugo-learn"
-#enableGitInfo = true
+
+[params]
+  themeVariant = "green"
+
+[outputs]
+ home = [ "HTML", "RSS", "JSON"]

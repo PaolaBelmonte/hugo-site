@@ -1,26 +1,14 @@
-Welcome to the **UPDATED homepage** of my project!
+# Automatic static site deployment on Kubernetes with GitHub actions
 
+Welcome to my project!
 
-The high level change we propose is to **improve the assistance and repair process** and evaluate to hire a new employee for warehouse management.
+This is a project work for the [Cloud Computing course](https://didattica.polito.it/pls/portal30/gap.pkg_guide.viewGap?p_cod_ins=01TYDSM) at Politecnico di Torino.
 
-During the interview with Rossella, head of the administrative unit at Cea Gas, we discussed the key processes and we focused mainly on processes related to heating system whose power is lower than 35 kW. Private apartment/house owners represent the **higher percentage of customers**: in fact private customers count up to 9.000 and blocks of apartments/firms up to 60.
+The main goal is providing an **automatic deploy of a web site starting from a GitHub repository**.
 
-### Application portfolio
+The GitHub repository is converted into website content using Hugo, an open-source static site generator. The content is packaged in a Docker image, which is used to create a pod deployment hosted on a Kubernetes cluster.
 
-The main IT applications and services are listed in the table below.
+All the flow is automated using a GitHub action that is triggered on every push event.
+In this way, the website content can be directly updated from within the GitHub repository by simply editing or adding markdown files. All is obtained without writing html/css pages or programming code.
 
-| Application name | Vendor | Main functions |
-| --- | --- | --- |
-| SAT (Software Assistenza Tecnica)<br />- Core module<br />- Mobile module | Think Out S.r.l.   | Management software for client directory, appointments and technical interventions planning<br />Mobile App for technicians |
-| Excel | Microsoft  | Basic administrative accounting, estimate calculations |
-| Word | Microsoft  | Documents writing (technical inspection reports, offers and quotes, contracts) |
-| E-mail |  Web based | E-mail communications |
-| DiskStation Manager | Synology | File sharing and centralized data backup (configured by external IT firm) |
-
-In addition to the above listed software, the following web portals are also used for related and mandatory administrative procedures.
-
-| Web portal name | Vendor | Main functions |
-| --- | --- | --- |
-| Heating systems vendors web portals | Different web applications for each vendor | Purchase boilers and spare parts |
-| CIT (Catasto Impianti Termici) web portal  | Piedmont Region CIT (Thermal Systems Cadastre) | Submit maintenance reports comply to legal obligations (e.g. efficiency, carbon monoxide emissions) |
-| Agenzia Entrate web portal | Agenzia delle Entrate (Italian Tax and Revenue Agency) | Submit digital invoices and comply to legal obligations |
+This web site has been created following these steps and it is running on the Kubernetes cluster provided by the [Netgroup](http://netgroup.polito.it) at Politecnico di Torino.
