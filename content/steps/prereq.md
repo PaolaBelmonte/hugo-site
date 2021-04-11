@@ -1,8 +1,5 @@
----
-title: "Prerequisites"
-date: 2021-04-11T11:10:54Z
-draft: false
----
+# Prerequisites
+
 What is needed to start on this project?
 
 | a GitHub account | ![logo-github](/images/logo-github.png) |
