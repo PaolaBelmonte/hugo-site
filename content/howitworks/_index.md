@@ -13,6 +13,6 @@ This section presents the main steps I have used performed to achieve the result
 ### Prerequisites
 
 What is needed to start on this project?
-| a GitHub account | | a DockerHub account  | a Kubernetes cluster |
-| -------------------- | ---- |
-|![logo-github](/images/logo-github.png) | ![logo-docker](/images/logo-docker-64.png) | ![logo-k8s](/images/logo-k8s-64.png)|
+| a GitHub account | a DockerHub account | a Kubernetes cluster |
+| -------------------- | ---- | ---- |
+|![logo-github](/images/logo-github.png)| ![logo-docker](/images/logo-docker-64.png)|![logo-k8s](/images/logo-k8s-64.png)|
