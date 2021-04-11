@@ -47,4 +47,4 @@ sudo docker build -t paolabelmonte/hugo-site:v1 .
 sudo docker run --name testhugo -d -p 8080:80 paolabelmonte/hugo-site:v1
 ```
 
-- Open a browser and point to *http://<myhostname>:8080*.
+- Open a browser and point to *http://_myhostname_:8080*.
