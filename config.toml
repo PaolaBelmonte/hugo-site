@@ -1,10 +1,11 @@
 baseURL = "https://hugosite.crownlabs.polito.it/"
 languageCode = "en-us"
-title = "Paola Hugo Site"
+title = "Project Work"
 theme = "hugo-learn"
 
 [params]
   themeVariant = "green"
+  disableLandingPage = true
 
 [outputs]
  home = [ "HTML", "RSS", "JSON"]

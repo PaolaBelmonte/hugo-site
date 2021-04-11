@@ -1,6 +1,7 @@
 ---
 title: Resources
 date: 2021-04-11T12:00:54Z
+chapter=true
 draft: false
 ---
 I have used several resources to carry on my project.
