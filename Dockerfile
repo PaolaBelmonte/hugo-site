@@ -1,31 +1,25 @@
-#Install the container's OS
+#Install OS for the container 
 FROM ubuntu:latest as HUGOINSTALL
 
-# Install Hugo
+# Update repository and install Hugo
 RUN apt-get update
 RUN apt-get install hugo -y
+RUN hv=$(hugo version)
+RUN echo $hv
 
-# Copy the contents of the current working directory to the hugo-site
-# directory. The directory will be created if it doesn't exist.
+# Copy to the hugo-site the working directory content
+# (if it doesn't exist, it will be created)
 COPY . /hugo-site
 
-# Use Hugo to build the static site files.
-WORKDIR /hugo-site
+# Run Hugo to build the static site
 RUN hugo -v --source=/hugo-site --destination=/hugo-site/public
 
-# Install NGINX and deactivate NGINX's default index.html file.
-# Move the static site files to NGINX's html directory.
-# This directory is where the static site files will be served from by NGINX.
+# Install NGINX and rename default index.html file
 FROM nginx:stable-alpine
 RUN mv /usr/share/nginx/html/index.html /usr/share/nginx/html/old-index.html
+# Copy the static site created by Hugo to NGINX's html serve directory
 COPY --from=HUGOINSTALL /hugo-site/public/ /usr/share/nginx/html/
-RUN chown nginx:nginx /usr/share/nginx/html/*
+#RUN chown nginx:nginx /usr/share/nginx/html/*
 
-# The container will listen on port 80 using the TCP protocol.
+# The NGINX container will listen on port TCP 80
 EXPOSE 80
-
-CMD [ "nginx", "-g", "daemon off;" ]
-
-# Example from
-# https://www.linode.com/docs/guides/deploy-container-image-to-kubernetes
-# modified for https://stackoverflow.com/questions/49254476/getting-forbidden-error-while-using-nginx-inside-docker
