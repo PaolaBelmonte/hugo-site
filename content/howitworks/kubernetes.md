@@ -1,8 +1,10 @@
 ---
 title: "Kubernetes"
 date: 2021-04-11T19:50:14Z
+weight: 2
 draft: false
 ---
+{{% children depth="2" %}}
 The following is the manifest file which will create Deployment, Service and Ingress resources.
 
 ```

@@ -1,8 +1,10 @@
 ---
 title: "GitHub action"
 date: 2021-04-11T23:15:54Z
+weight: 3
 draft: false
 ---
+{{% children depth="2" %}}
 This is the workflow for the GitHub action, which is triggered on every push event.
 
 ```

@@ -1,6 +1,7 @@
 ---
 title: Credits
 date: 2021-04-11T12:00:54Z
+weight: 2
 draft: false
 ---
 The [CrownLabs](https://crownlabs.polito.it/) platform has been very useful for practicing on Docker and Kubernetes. Give it a try!

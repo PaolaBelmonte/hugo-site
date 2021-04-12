@@ -1,8 +1,10 @@
 ---
 title: "Docker image"
 date: 2021-04-11T12:00:54Z
+weight: 1
 draft: false
 ---
+{{% children depth="2" %}}
 The goal is building a Docker image and obtain an NGINX server containing the Hugo website.
 
 This is the Dockerfile: 

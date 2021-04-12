@@ -5,7 +5,8 @@ theme = "hugo-learn"
 
 [params]
   themeVariant = "green"
-  disableLandingPageButton = true
+  disableLandingPageButton = false
+  ordersectionsby = "weight"
 
 [outputs]
  home = [ "HTML", "RSS", "JSON"]
