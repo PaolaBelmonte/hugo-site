@@ -25,9 +25,7 @@ jobs:
       run: echo "GITHUB_RUN_SHA" ${{ github.sha }}
      
     - name: Output First 8 SHA Chars
-      env:
-         SHA8: ${GITHUB_SHA::8}
-      run: echo "FIRST 8 SHA CHARS" $SHA8
+      run: echo "FIRST 8 SHA CHARS:" && echo ${GITHUB_SHA} | cut -c1-8
       
     - name: Get current time
       uses: 1466587594/get-current-time@v2
