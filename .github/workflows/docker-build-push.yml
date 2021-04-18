@@ -22,7 +22,7 @@ jobs:
     - name: Output Run Number
       run: echo "GITHUB_RUN_NUMBER" ${{ github.run_number }}
     - name: Output SHA Commit
-      run: echo "GITHUB_SHA" ${{ github_sha }} 
+      run: echo "GITHUB_SHA" ${{ github.sha }} 
       
     - name: Get current time
       uses: 1466587594/get-current-time@v2
