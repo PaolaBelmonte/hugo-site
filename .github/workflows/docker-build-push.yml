@@ -18,9 +18,9 @@ jobs:
         submodules: true
         
     - name: Output Run ID
-      run: echo "GITHUB_RUN_ID" ${{ github_run_id }}
+      run: echo "GITHUB_RUN_ID" ${{ github.run_id }}
     - name: Output Run Number
-      run: echo "GITHUB_RUN_NUMBER" ${{ github_run_number }}
+      run: echo "GITHUB_RUN_NUMBER" ${{ github.run_number }}
     - name: Output SHA Commit
       run: echo "GITHUB_SHA" ${{ github_sha }} 
       
