@@ -33,12 +33,12 @@ jobs:
     - name: Output current time
       run: echo "Current time" ${{ steps.time.outputs.formattedTime }}  
  
-     - name: Use current time        
-       env:
+    - name: Use current time        
+      env:
          TIME: "${{ steps.time.outputs.time }}"
          R_TIME: "${{ steps.time.outputs.readableTime }}"
          F_TIME: "${{ steps.time.outputs.formattedTime }}"
          YEAR: "${{ steps.time.outputs.year }}"
          DAY: "${{ steps.time.outputs.day }}"
-       run: echo $TIME $R_TIME $F_TIME $YEAR $DAY
+      run: echo $TIME $R_TIME $F_TIME $YEAR $DAY
  
