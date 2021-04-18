@@ -26,7 +26,7 @@ jobs:
      
     - name: Output First 8 SHA Chars
       env:
-         SHA8: ${github.sha::8}
+         SHA8: ${GITHUB_SHA::8}
       run: echo "FIRST 8 SHA CHARS" $SHA8
       
     - name: Get current time
