@@ -1,4 +1,4 @@
-#Test env GIT variabes an date/time action
+# Workflow using github.sha as tag for Docker image
 name: Docker build and publish
 
 on:
@@ -12,36 +12,39 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    
+    # Use action to checkout repo
+    # Hugo themes are git submodules: "submodules: true" needed
     - name: Check out code
       uses: actions/checkout@v2
       with:
         submodules: true
-        
-    - name: Output Run ID
-      run: echo "GITHUB_RUN_ID" ${{ github.run_id }}
-    - name: Output Run Number
-      run: echo "GITHUB_RUN_NUMBER" ${{ github.run_number }}
-    - name: Output SHA Commit
-      run: echo "GITHUB_RUN_SHA" ${{ github.sha }}
-     
-    - name: Output First 8 SHA Chars
-      run: echo "FIRST 8 SHA CHARS:" && echo ${GITHUB_SHA} | cut -c1-8
-      
-    - name: Get current time
-      uses: 1466587594/get-current-time@v2
-      id: time
+          
+    # Use github.sha as tag for Docker image
+    - name: Build and push Docker image
+      uses: mr-smithers-excellent/docker-build-push@v5
       with:
-        format: YYYYMMDD-HHMM
- 
-    - name: Output current time
-      run: echo "Current time" ${{ steps.time.outputs.formattedTime }}  
- 
-    - name: Use current time        
+        image: paolabelmonte/hugo-site
+        tags: ${{ github.sha }}
+        registry: docker.io
+        dockerfile: Dockerfile
+        username: ${{ secrets.DOCKERHUB_USER }}
+        password: ${{ secrets.DOCKERHUB_PSW }}
+
+    # Use action to perform replamcement of IMG_TAG in template-deploy.yaml
+    # after replacement save the file as my-deploy.yaml
+    - name: Generate deploy yaml
+      uses: danielr1996/envsubst-action@1.0.0
+      with:
+        input: template-deploy.yaml
+        output: my-deploy.yaml
       env:
-         TIME: "${{ steps.time.outputs.time }}"
-         R_TIME: "${{ steps.time.outputs.readableTime }}"
-         F_TIME: "${{ steps.time.outputs.formattedTime }}"
-         YEAR: "${{ steps.time.outputs.year }}"
-         DAY: "${{ steps.time.outputs.day }}"
-      run: echo $TIME $R_TIME $F_TIME $YEAR $DAY
- 
+        IMG_TAG: ${{ github.sha }}
+    
+    # Use action to apply my-deploy.yaml to a K8s cluster
+    # secrets.KUBECONFIG stores kubeconfig file with all cluster information
+    - name: Deploy website
+      uses: giorio94/kubectl-oidc-action@1.1.0
+      with:
+        kubeconfig: ${{ secrets.KUBECONFIG }}
+        args: apply -f my-deploy.yaml
