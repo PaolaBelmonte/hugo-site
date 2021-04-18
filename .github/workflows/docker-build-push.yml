@@ -1,11 +1,9 @@
-# Test workflow Paola
+#Test env GIT variabes an date/time action
 name: Docker build and publish
 
 on:
   push:
     branches: [ main ]
-  #pull_request:
-    #branches: [ main ]
 
 jobs:
 
@@ -18,28 +16,29 @@ jobs:
       uses: actions/checkout@v2
       with:
         submodules: true
-          
-    # Uso come numero di versione il github.run_number
-    - name: Generate deploy yaml
-      uses: danielr1996/envsubst-action@1.0.0
+        
+    - name: Output Run ID
+      run: echo "GITHUB_RUN_ID" ${{ GITHUB_RUN_ID }}
+    - name: Output Run Number
+      run: echo "GITHUB_RUN_NUMBER" ${{ GITHUB_RUN_NUMBER }}
+    - name: Output SHA Commit
+      run: echo "GITHUB_SHA" ${{ GITHUB_SHA }} 
+      
+    - name: Get current time
+      uses: 1466587594/get-current-time@v2
+      id: time
       with:
-        input: template-deploy.yaml
-        output: my-deploy.yaml
-      env:
-        IMG_TAG: ${{ github.run_number }}
-    
-    - name: Build and push Docker image
-      uses: mr-smithers-excellent/docker-build-push@v5
-      with:
-        image: paolabelmonte/hugo-site
-        tags: ${{ github.run_number }}
-        registry: docker.io
-        dockerfile: Dockerfile
-        username: ${{ secrets.DOCKERHUB_USER }}
-        password: ${{ secrets.DOCKERHUB_PSW }}
-                
-    - name: Deploy website
-      uses: giorio94/kubectl-oidc-action@1.1.0
-      with:
-        kubeconfig: ${{ secrets.KUBECONFIG }}
-        args: apply -f my-deploy.yaml
+        format: YYYYMMDD-HHMM
+ 
+    - name: Output current time
+      run: echo "Current time" ${{ steps.time.outputs.formattedTime }}  
+ 
+     - name: Use current time        
+       env:
+         TIME: "${{ steps.time.outputs.time }}"
+         R_TIME: "${{ steps.time.outputs.readableTime }}"
+         F_TIME: "${{ steps.time.outputs.formattedTime }}"
+         YEAR: "${{ steps.time.outputs.year }}"
+         DAY: "${{ steps.time.outputs.day }}"
+       run: echo $TIME $R_TIME $F_TIME $YEAR $DAY
+ 
