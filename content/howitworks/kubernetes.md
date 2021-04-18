@@ -5,7 +5,10 @@ weight: 2
 draft: false
 ---
 {{% children depth="2" %}}
-The following is the manifest file which will create Deployment, Service and Ingress resources.
+The following is the manifest file which will create 3 resources:
+- Deployment (with 2 replicas)
+- Service (type ClusterIP)
+- Ingress
 
 ```
 ---
