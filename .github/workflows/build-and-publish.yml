@@ -1,4 +1,4 @@
-# Workflow with checkout and docker-build-push
+# Workflow with checkout, docker-build-push, K8s resources
 # using official Docker action for build/push steps
 on:
   push:
@@ -37,9 +37,17 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: paolabelmonte/hugo-site:v0
+        tags: paolabelmonte/hugosite:v0
     
     # Show Docker image digest using output of previous actions
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
     
+    # Use action to apply my-deploy.yaml to a K8s cluster
+    # secrets.KUBECONFIG stores kubeconfig file with all cluster information
+    - name: Deploy website on K8s cluster
+      uses: giorio94/kubectl-oidc-action@1.1.0
+      with:
+        kubeconfig: ${{ secrets.KUBECONFIG }}
+        args: apply -f template-deploy.yaml --namespace=project-github-website
+
