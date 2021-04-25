@@ -1,0 +1,33 @@
+# Workflow with checkout and docker-build-push
+# and non official action (mr-smithers) for build/push steps
+name: Docker build and publish
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    # Use action to checkout repo
+    # Hugo themes are git submodules: "submodules: true" needed
+    - name: Check out code
+      uses: actions/checkout@v2
+      with:
+        submodules: true
+          
+    # Use github.sha as tag for Docker image
+    - name: Build and push Docker image
+      uses: mr-smithers-excellent/docker-build-push@v5
+      with:
+        image: paolabelmonte/hugo-site
+        tags: v0
+        registry: docker.io
+        dockerfile: Dockerfile
+        username: ${{ secrets.DOCKERHUB_USER }}
+        password: ${{ secrets.DOCKERHUB_PSW }}
