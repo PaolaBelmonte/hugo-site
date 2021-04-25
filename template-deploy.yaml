@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: hugo-site
-        image: paolabelmonte/hugo-site:v0
+        image: paolabelmonte/hugo-site:v1
         ports:
         - containerPort: 80
 ---
