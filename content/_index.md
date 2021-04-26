@@ -15,5 +15,5 @@ A quick overview on how it works.
 This web site has been created following these steps and it is running on the **Crownlabs Kubernetes cluster** provided by the [Netgroup](http://netgroup.polito.it) at Politecnico di Torino.
 
 
-                                                                                                                    Thanks for visiting!
-                                                                                                                        Paola Belmonte
+   Thanks for visiting!
+     Paola Belmonte
