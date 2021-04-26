@@ -1,5 +1,10 @@
-# Workflow with checkout, docker-build-push, K8s resources
-# using official Docker action for build/push steps
+# Workflow to create a Docker image of a Hugo site
+# and deploy it on a K8s cluster
+# Version using github.sha as tag for Docker image
+# and Docker official actions for build/push steps
+
+name: Build and publish Hugo site
+
 on:
   push:
     branches: [ main ]
@@ -37,11 +42,21 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: paolabelmonte/hugo-site:v3
+        tags: paolabelmonte/hugosite:${{ github.sha }}
     
     # Show Docker image digest using output of previous actions
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
+    
+    # Use action to perform replacement of IMG_TAG in template-deploy.yaml
+    # after replacement save the file as my-deploy.yaml
+    - name: Generate deploy yaml
+      uses: danielr1996/envsubst-action@1.0.0
+      with:
+        input: template-deploy.yaml
+        output: my-deploy.yaml
+      env:
+        IMG_TAG: ${{ github.sha }}
     
     # Use action to apply my-deploy.yaml to a K8s cluster
     # secrets.KUBECONFIG stores kubeconfig file with all cluster information
@@ -49,5 +64,4 @@ jobs:
       uses: giorio94/kubectl-oidc-action@1.1.0
       with:
         kubeconfig: ${{ secrets.KUBECONFIG }}
-        args: apply -f template-deploy.yaml --namespace=project-github-website
-
+        args: apply -f my-deploy.yaml
