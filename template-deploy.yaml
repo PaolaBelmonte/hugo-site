@@ -1,5 +1,5 @@
 # Template for complete deployment
-
+# image tag is still managed manually
 ---
 # Deployment
 apiVersion: apps/v1
