@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes"
 date: 2021-04-11T19:50:14Z
-weight: 2
+weight: 5
 draft: false
 ---
 {{% children depth="2" %}}
