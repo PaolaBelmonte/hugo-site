@@ -42,7 +42,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: paolabelmonte/hugosite:${{ github.sha }}
+        tags: paolabelmonte/hugo-site:${{ github.sha }}
     
     # Show Docker image digest using output of previous actions
     - name: Image digest
