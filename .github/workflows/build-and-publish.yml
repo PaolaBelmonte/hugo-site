@@ -37,7 +37,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: paolabelmonte/hugo-site:v2
+        tags: paolabelmonte/hugo-site:v4
     
     # Show Docker image digest using output of previous actions
     - name: Image digest
