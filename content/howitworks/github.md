@@ -67,7 +67,7 @@ jobs:
       uses: giorio94/kubectl-oidc-action@1.1.0
       with:
         kubeconfig: ${{ secrets.KUBECONFIG }}
-        args: apply -f my-deploy.yaml
+        args: apply -f my-deploy.yaml --namespace=project-github-website
 ```
 
 **Workflow 2**
@@ -141,5 +141,5 @@ jobs:
       uses: giorio94/kubectl-oidc-action@1.1.0
       with:
         kubeconfig: ${{ secrets.KUBECONFIG }}
-        args: apply -f my-deploy.yaml
+        args: apply -f my-deploy.yaml --namespace=project-github-website
 ```
